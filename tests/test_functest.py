@@ -73,6 +73,18 @@ class TestFunctestClient(unittest.TestCase):
         # Call API
         client = FunctestClient(FUNCTEST_URL)
         from_date = datetime.datetime(2017, 6, 1, 10, 0, 0)
+        response = client.results(from_date=from_date)
+
+        req = httpretty.last_request()
+
+        expected = {
+            'from': ['2017-06-01 10:00:00']
+        }
+        self.assertEqual(req.method, 'GET')
+        self.assertRegex(req.path, '/api/v1/results')
+        self.assertDictEqual(req.querystring, expected)
+
+        # Test using to_date value
         to_date = datetime.datetime(2017, 6, 1, 11, 0, 0)
         response = client.results(from_date=from_date, to_date=to_date)
 

@@ -26,8 +26,65 @@ import requests
 from grimoirelab.toolkit.datetime import datetime_to_utc
 from grimoirelab.toolkit.uris import urijoin
 
+from ...backend import (Backend,
+                        metadata)
+from ...utils import DEFAULT_DATETIME
+
 
 logger = logging.getLogger(__name__)
+
+
+class Functest(Backend):
+    """Functest backend for Perceval.
+
+    This class retrieves data from tests stored in a functest
+    server. To initialize this class the URL must be provided.
+    The `url` will be set as the origin of the data.
+
+    :param url: Functest URL
+    :param tag: label used to mark the data
+    """
+    version = '0.1.0'
+
+    def __init__(self, url, tag=None):
+        origin = url
+
+        super().__init__(origin, tag=tag, cache=None)
+        self.url = url
+        self.client = FunctestClient(url)
+
+    @metadata
+    def fetch(self, from_date=DEFAULT_DATETIME, to_date=None):
+        """Fetch tests data from the server.
+
+        This method fetches tests data from a server that were
+        updated since the given date.
+
+        :param from_date: obtain data updated since this date
+        :param to_date: obtain data updated before this date
+
+        :returns: a generator of items
+        """
+        logger.info("Fetching tests data of '%s' group from %s to %s",
+                    self.url, str(from_date),
+                    str(to_date) if to_date else '--')
+
+        from_date = datetime_to_utc(from_date)
+        to_date = datetime_to_utc(to_date) if to_date else None
+
+    @staticmethod
+    def parse_json(raw_json):
+        """Parse a Functest JSON stream.
+
+        The method parses a JSON stream and returns a
+        dict with the parsed data.
+
+        :param raw_json: JSON string to parse
+
+        :returns: a dict with the parsed data
+        """
+        result = json.loads(raw_json)
+        return result['results']
 
 
 class FunctestClient:
@@ -50,16 +107,18 @@ class FunctestClient:
     def __init__(self, base_url):
         self.base_url = base_url
 
-    def results(self, from_date, to_date):
+    def results(self, from_date, to_date=None):
         """Get test cases results."""
 
         fdt = from_date.strftime("%Y-%m-%d %H:%M:%S")
-        tdt = to_date.strftime("%Y-%m-%d %H:%M:%S")
-
         params = {
-            self.PFROM_DATE: fdt,
-            self.PTO_DATE: tdt
+            self.PFROM_DATE: fdt
         }
+
+        if to_date:
+            tdt = to_date.strftime("%Y-%m-%d %H:%M:%S")
+            params[self.PTO_DATE] = tdt
+
         response = self._fetch(self.RRESULTS, params)
 
         return response

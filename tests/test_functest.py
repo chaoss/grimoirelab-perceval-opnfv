@@ -31,7 +31,8 @@ import pkg_resources
 sys.path.insert(0, '..')
 pkg_resources.declare_namespace('perceval.backends')
 
-from perceval.backends.opnfv.functest import FunctestClient
+from perceval.backends.opnfv.functest import (Functest,
+                                              FunctestClient)
 
 
 def read_file(filename, mode='r'):
@@ -53,6 +54,78 @@ def setup_http_server():
     httpretty.register_uri(httpretty.GET,
                            FUNCTEST_RESULTS_URL,
                            body=body, status=200)
+
+
+class TestFunctestBackend(unittest.TestCase):
+    """Functest backend tests"""
+
+    def test_initialization(self):
+        """Test whether attributes are initializated"""
+
+        functest = Functest(FUNCTEST_URL, tag='test')
+
+        self.assertEqual(functest.url, FUNCTEST_URL)
+        self.assertEqual(functest.origin, FUNCTEST_URL)
+        self.assertEqual(functest.tag, 'test')
+        self.assertIsInstance(functest.client, FunctestClient)
+
+        # When tag is empty or None it will be set to
+        # the value in
+        functest = Functest(FUNCTEST_URL)
+        self.assertEqual(functest.origin, FUNCTEST_URL)
+        self.assertEqual(functest.tag, FUNCTEST_URL)
+
+        functest = Functest(FUNCTEST_URL, tag='')
+        self.assertEqual(functest.origin, FUNCTEST_URL)
+        self.assertEqual(functest.tag, FUNCTEST_URL)
+
+    def test_has_caching(self):
+        """Test if it returns False when has_caching is called"""
+
+        self.assertEqual(Functest.has_caching(), False)
+
+    def test_has_resuming(self):
+        """Test if it returns False when has_resuming is called"""
+
+        self.assertEqual(Functest.has_resuming(), False)
+
+    @httpretty.activate
+    def test_fetch(self):
+        """Test whether it fetches data from a repository"""
+
+        setup_http_server()
+
+        functest = Functest(FUNCTEST_URL)
+        items = [item for item in functest.fetch()]
+
+        self.assertEqual(len(items), 27)
+
+        item = items[0]
+        self.assertEqual(item['uuid'], '14d307c6511ad3e670a9b6cbef0942a4b5d09ab0')
+        self.assertEqual(item['origin'], FUNCTEST_URL)
+        self.assertEqual(item['updated_on'], 1496314767.0)
+        self.assertEqual(item['category'], 'functest')
+        self.assertEqual(item['tag'], FUNCTEST_URL)
+        self.assertEqual(item['data']['_id'], '592ff62c78a2ad000ae6af4d')
+
+        item = items[26]
+        self.assertEqual(item['uuid'], 'cca9bf1e338b4cac4fbedf1d0cc46b2f36465e8c')
+        self.assertEqual(item['origin'], FUNCTEST_URL)
+        self.assertEqual(item['updated_on'], 1496311317.0)
+        self.assertEqual(item['category'], 'functest')
+        self.assertEqual(item['tag'], FUNCTEST_URL)
+        self.assertEqual(item['data']['_id'], '592fe61678a2ad000ae6af33')
+
+        # Check requests
+        self.assertEqual(len(httpretty.httpretty.latest_requests), 1)
+
+    def test_parse_json(self):
+        """Test if it parses a JSON stream"""
+
+        raw_json = read_file('data/functest/functest_results.json')
+
+        data = Functest.parse_json(raw_json)
+        self.assertEqual(len(data), 27)
 
 
 class TestFunctestClient(unittest.TestCase):

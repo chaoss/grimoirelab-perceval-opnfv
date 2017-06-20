@@ -1,0 +1,627 @@
+{
+    "results": [
+        {
+            "project_name": "functest",
+            "scenario": "os-nosdn-kvm_ovs_dpdk_bar-ha",
+            "stop_date": "2017-06-01 11:10:36",
+            "trust_indicator": null,
+            "case_name": "snaps_smoke",
+            "build_tag": "jenkins-functest-fuel-baremetal-daily-danube-515",
+            "version": "danube",
+            "pod_name": "lf-pod2",
+            "criteria": "PASS",
+            "installer": "fuel",
+            "_id": "592ff62c78a2ad000ae6af4d",
+            "start_date": "2017-06-01 10:59:27",
+            "details": {}
+        },
+        {
+            "project_name": "functest",
+            "scenario": "os-nosdn-ovs-noha",
+            "stop_date": "2017-06-01 11:08:03",
+            "trust_indicator": null,
+            "case_name": "rally_sanity",
+            "build_tag": "jenkins-functest-fuel-virtual-daily-danube-593",
+            "version": "danube",
+            "pod_name": "ericsson-virtual1",
+            "criteria": "PASS",
+            "installer": "fuel",
+            "_id": "592ff59378a2ad000ae6af4c",
+            "start_date": "2017-06-01 10:55:33",
+            "details": [
+                {
+                    "details": {
+                        "duration": "     46.28",
+                        "success": "100.00",
+                        "nb tests": 12
+                    },
+                    "module": "authenticate     "
+                },
+                {
+                    "details": {
+                        "duration": "     91.00",
+                        "success": "100.00",
+                        "nb tests": 11
+                    },
+                    "module": "glance           "
+                },
+                {
+                    "details": {
+                        "duration": "    141.39",
+                        "success": "100.00",
+                        "nb tests": 19
+                    },
+                    "module": "cinder           "
+                },
+                {
+                    "details": {
+                        "duration": "     79.78",
+                        "success": "100.00",
+                        "nb tests": 16
+                    },
+                    "module": "heat             "
+                },
+                {
+                    "details": {
+                        "duration": "    138.33",
+                        "success": "100.00",
+                        "nb tests": 72
+                    },
+                    "module": "keystone         "
+                },
+                {
+                    "details": {
+                        "duration": "    248.30",
+                        "success": "100.00",
+                        "nb tests": 30
+                    },
+                    "module": "neutron          "
+                },
+                {
+                    "details": {
+                        "duration": "    389.25",
+                        "success": "100.00",
+                        "nb tests": 26
+                    },
+                    "module": "nova             "
+                },
+                {
+                    "details": {
+                        "duration": "     53.10",
+                        "success": "100.00",
+                        "nb tests": 12
+                    },
+                    "module": "quotas           "
+                },
+                {
+                    "details": {
+                        "duration": "      7.40",
+                        "success": "100.00",
+                        "nb tests": 2
+                    },
+                    "module": "requests         "
+                },
+                {
+                    "summary": {
+                        "duration": 1194.83,
+                        "nb success": "100.00",
+                        "nb tests": 200
+                    }
+                }
+            ]
+        },
+        {
+            "project_name": "functest",
+            "scenario": "os-nosdn-nofeature-ha",
+            "stop_date": "2017-06-01 11:14:14",
+            "trust_indicator": null,
+            "case_name": "tempest_smoke_serial",
+            "build_tag": "jenkins-functest-fuel-armband-baremetal-daily-danube-166",
+            "version": "danube",
+            "pod_name": "arm-pod3",
+            "criteria": "PASS",
+            "installer": "fuel",
+            "_id": "592ff70578a2ad000ae6af4f",
+            "start_date": "2017-06-01 10:52:11",
+            "details": {
+                "failures": 0,
+                "tests": 119,
+                "errors": "",
+                "skipped": "2017-06-01 11:08:44.428 368 INFO opnfv-tempest [-] {0} tempest.scenario.test_server_multinode.TestServerMultinode"
+            }
+        },
+        {
+            "project_name": "functest",
+            "scenario": "os-nosdn-nofeature-ha",
+            "stop_date": "2017-06-01 10:51:42",
+            "trust_indicator": null,
+            "case_name": "vping_userdata",
+            "build_tag": "jenkins-functest-fuel-armband-baremetal-daily-danube-166",
+            "version": "danube",
+            "pod_name": "arm-pod3",
+            "criteria": "PASS",
+            "installer": "fuel",
+            "_id": "592ff1bd78a2ad000ae6af49",
+            "start_date": "2017-06-01 10:51:04",
+            "details": {
+                "timestart": 1496314264.745014,
+                "duration": 38.0,
+                "status": "PASS"
+            }
+        },
+        {
+            "project_name": "functest",
+            "scenario": "os-nosdn-nofeature-ha",
+            "stop_date": "2017-06-01 10:50:28",
+            "trust_indicator": null,
+            "case_name": "vping_ssh",
+            "build_tag": "jenkins-functest-fuel-armband-baremetal-daily-danube-166",
+            "version": "danube",
+            "pod_name": "arm-pod3",
+            "criteria": "PASS",
+            "installer": "fuel",
+            "_id": "592ff17378a2ad000ae6af48",
+            "start_date": "2017-06-01 10:49:47",
+            "details": {
+                "timestart": 1496314187.73099,
+                "duration": 40.7,
+                "status": "PASS"
+            }
+        },
+        {
+            "project_name": "functest",
+            "scenario": "os-nosdn-nofeature-ha",
+            "stop_date": "2017-06-01 10:49:36",
+            "trust_indicator": null,
+            "case_name": "snaps_health_check",
+            "build_tag": "jenkins-functest-fuel-armband-baremetal-daily-danube-166",
+            "version": "danube",
+            "pod_name": "arm-pod3",
+            "criteria": "PASS",
+            "installer": "fuel",
+            "_id": "592ff13f78a2ad000ae6af47",
+            "start_date": "2017-06-01 10:47:59",
+            "details": {}
+        },
+        {
+            "project_name": "functest",
+            "scenario": "os-nosdn-nofeature-ha",
+            "stop_date": "2017-06-01 10:47:58",
+            "trust_indicator": null,
+            "case_name": "api_check",
+            "build_tag": "jenkins-functest-fuel-armband-baremetal-daily-danube-166",
+            "version": "danube",
+            "pod_name": "arm-pod3",
+            "criteria": "PASS",
+            "installer": "fuel",
+            "_id": "592ff0dd78a2ad000ae6af46",
+            "start_date": "2017-06-01 10:45:47",
+            "details": {}
+        },
+        {
+            "project_name": "functest",
+            "scenario": "os-nosdn-nofeature-ha",
+            "stop_date": "2017-06-01 10:45:46",
+            "trust_indicator": null,
+            "case_name": "connection_check",
+            "build_tag": "jenkins-functest-fuel-armband-baremetal-daily-danube-166",
+            "version": "danube",
+            "pod_name": "arm-pod3",
+            "criteria": "PASS",
+            "installer": "fuel",
+            "_id": "592ff05878a2ad000ae6af45",
+            "start_date": "2017-06-01 10:45:45",
+            "details": {}
+        },
+        {
+            "project_name": "functest",
+            "scenario": "os-nosdn-kvm_ovs_dpdk_bar-ha",
+            "stop_date": "2017-06-01 10:59:05",
+            "trust_indicator": null,
+            "case_name": "refstack_defcore",
+            "build_tag": "jenkins-functest-fuel-baremetal-daily-danube-515",
+            "version": "danube",
+            "pod_name": "lf-pod2",
+            "criteria": "PASS",
+            "installer": "fuel",
+            "_id": "592ff37978a2ad000ae6af4b",
+            "start_date": "2017-06-01 10:44:41",
+            "details": {
+                "failures": 0,
+                "tests": 204,
+                "errors": "",
+                "success": " tempest.api.compute.images.test_images_oneserver.ImagesOneServerTestJSON.test_create_delete_image [26.719526s],  tempest.api.compute.images.test_images_oneserver.ImagesOneServerTestJSON.test_create_image_specify_multibyte_character_image_name [8.541448s],  tempest.api.compute.servers.test_create_server.ServersTestJSON.test_host_name_is_same_as_server_name [68.048491s],  tempest.api.compute.servers.test_create_server.ServersTestJSON.test_list_servers [0.108634s],  tempest.api.compute.servers.test_create_server.ServersTestJSON.test_list_servers_with_detail [0.257642s],  tempest.api.compute.servers.test_create_server.ServersTestJSON.test_verify_created_server_vcpus [0.152172s],  tempest.api.compute.servers.test_create_server.ServersTestJSON.test_verify_server_details [0.000889s],  tempest.api.compute.servers.test_create_server.ServersTestManualDisk.test_host_name_is_same_as_server_name [68.756394s],  tempest.api.compute.servers.test_create_server.ServersTestManualDisk.test_list_servers [0.102238s],  tempest.api.compute.servers.test_create_server.ServersTestManualDisk.test_list_servers_with_detail [0.325788s],  tempest.api.compute.servers.test_create_server.ServersTestManualDisk.test_verify_created_server_vcpus [0.147901s],  tempest.api.compute.servers.test_create_server.ServersTestManualDisk.test_verify_server_details [0.001385s],  tempest.api.compute.servers.test_instance_actions.InstanceActionsTestJSON.test_get_instance_action [0.096061s],  tempest.api.compute.servers.test_instance_actions.InstanceActionsTestJSON.test_list_instance_actions [3.363377s],  tempest.api.compute.servers.test_list_server_filters.ListServerFiltersTestJSON.test_list_servers_detailed_filter_by_flavor [0.261238s],  tempest.api.compute.servers.test_list_server_filters.ListServerFiltersTestJSON.test_list_servers_detailed_filter_by_image [0.395583s],  tempest.api.compute.servers.test_list_server_filters.ListServerFiltersTestJSON.test_list_servers_detailed_filter_by_server_name [0.260487s],  tempest.api.compute.servers.test_list_server_filters.ListServerFiltersTestJSON.test_list_servers_detailed_filter_by_server_status [0.263300s],  tempest.api.compute.servers.test_list_server_filters.ListServerFiltersTestJSON.test_list_servers_detailed_limit_results [0.266153s],  tempest.api.compute.servers.test_list_server_filters.ListServerFiltersTestJSON.test_list_servers_filter_by_active_status [0.080538s],  tempest.api.compute.servers.test_list_server_filters.ListServerFiltersTestJSON.test_list_servers_filter_by_flavor [0.077987s],  tempest.api.compute.servers.test_list_server_filters.ListServerFiltersTestJSON.test_list_servers_filter_by_image [0.065582s],  tempest.api.compute.servers.test_list_server_filters.ListServerFiltersTestJSON.test_list_servers_filter_by_limit [0.056885s],  tempest.api.compute.servers.test_list_server_filters.ListServerFiltersTestJSON.test_list_servers_filter_by_server_name [0.052388s],  tempest.api.compute.servers.test_list_server_filters.ListServerFiltersTestJSON.test_list_servers_filtered_by_name_wildcard [0.118007s],  tempest.api.compute.servers.test_list_servers_negative.ListServersNegativeTestJSON.test_list_servers_by_changes_since_future_date [0.086245s],  tempest.api.compute.servers.test_list_servers_negative.ListServersNegativeTestJSON.test_list_servers_by_changes_since_invalid_date [0.019612s],  tempest.api.compute.servers.test_list_servers_negative.ListServersNegativeTestJSON.test_list_servers_by_limits [0.087038s],  tempest.api.compute.servers.test_list_servers_negative.ListServersNegativeTestJSON.test_list_servers_by_limits_greater_than_actual_count [0.188905s],  tempest.api.compute.servers.test_list_servers_negative.ListServersNegativeTestJSON.test_list_servers_by_limits_pass_negative_value [0.021503s],  tempest.api.compute.servers.test_list_servers_negative.ListServersNegativeTestJSON.test_list_servers_by_limits_pass_string [0.018351s],  tempest.api.compute.servers.test_list_servers_negative.ListServersNegativeTestJSON.test_list_servers_by_non_existing_flavor [0.052544s],  tempest.api.compute.servers.test_list_servers_negative.ListServersNegativeTestJSON.test_list_servers_by_non_existing_image [0.082923s],  tempest.api.compute.servers.test_list_servers_negative.ListServersNegativeTestJSON.test_list_servers_by_non_existing_server_name [0.071896s],  tempest.api.compute.servers.test_list_servers_negative.ListServersNegativeTestJSON.test_list_servers_detail_server_is_deleted [0.276669s],  tempest.api.compute.servers.test_list_servers_negative.ListServersNegativeTestJSON.test_list_servers_status_non_existing [0.015808s],  tempest.api.compute.servers.test_list_servers_negative.ListServersNegativeTestJSON.test_list_servers_with_a_deleted_server [0.084473s],  tempest.api.compute.servers.test_server_actions.ServerActionsTestJSON.test_lock_unlock_server [8.274110s],  tempest.api.compute.servers.test_server_actions.ServerActionsTestJSON.test_reboot_server_hard [70.707310s],  tempest.api.compute.servers.test_server_actions.ServerActionsTestJSON.test_rebuild_server [20.697409s],  tempest.api.compute.servers.test_server_actions.ServerActionsTestJSON.test_stop_start_server [7.675172s],  tempest.api.compute.servers.test_server_metadata.ServerMetadataTestJSON.test_delete_server_metadata_item [0.543791s],  tempest.api.compute.servers.test_server_metadata.ServerMetadataTestJSON.test_get_server_metadata_item [0.325345s],  tempest.api.compute.servers.test_server_metadata.ServerMetadataTestJSON.test_list_server_metadata [0.281731s],  tempest.api.compute.servers.test_server_metadata.ServerMetadataTestJSON.test_set_server_metadata [0.630330s],  tempest.api.compute.servers.test_server_metadata.ServerMetadataTestJSON.test_set_server_metadata_item [0.598900s],  tempest.api.compute.servers.test_server_metadata.ServerMetadataTestJSON.test_update_server_metadata [0.539017s],  tempest.api.compute.servers.test_servers.ServersTestJSON.test_create_server_with_admin_password [1.453136s],  tempest.api.compute.servers.test_servers.ServersTestJSON.test_create_specify_keypair [12.548797s],  tempest.api.compute.servers.test_servers.ServersTestJSON.test_create_with_existing_server_name [22.589510s],  tempest.api.compute.servers.test_servers.ServersTestJSON.test_update_access_server_address [13.753670s],  tempest.api.compute.servers.test_servers.ServersTestJSON.test_update_server_name [10.410130s],  tempest.api.compute.servers.test_servers_negative.ServersNegativeTestJSON.test_create_numeric_server_name [1.272968s],  tempest.api.compute.servers.test_servers_negative.ServersNegativeTestJSON.test_create_server_metadata_exceeds_length_limit [1.168982s],  tempest.api.compute.servers.test_servers_negative.ServersNegativeTestJSON.test_create_server_name_length_exceeds_256 [1.181323s],  tempest.api.compute.servers.test_servers_negative.ServersNegativeTestJSON.test_create_with_invalid_flavor [1.103467s],  tempest.api.compute.servers.test_servers_negative.ServersNegativeTestJSON.test_create_with_invalid_image [1.225414s],  tempest.api.compute.servers.test_servers_negative.ServersNegativeTestJSON.test_create_with_invalid_network_uuid [0.899311s],  tempest.api.compute.servers.test_servers_negative.ServersNegativeTestJSON.test_delete_server_pass_id_exceeding_length_limit [0.529372s],  tempest.api.compute.servers.test_servers_negative.ServersNegativeTestJSON.test_delete_server_pass_negative_id [0.782502s],  tempest.api.compute.servers.test_servers_negative.ServersNegativeTestJSON.test_get_non_existent_server [0.382908s],  tempest.api.compute.servers.test_servers_negative.ServersNegativeTestJSON.test_invalid_ip_v6_address [1.474420s],  tempest.api.compute.servers.test_servers_negative.ServersNegativeTestJSON.test_reboot_non_existent_server [0.852281s],  tempest.api.compute.servers.test_servers_negative.ServersNegativeTestJSON.test_rebuild_deleted_server [1.853386s],  tempest.api.compute.servers.test_servers_negative.ServersNegativeTestJSON.test_rebuild_non_existent_server [0.562474s],  tempest.api.compute.servers.test_servers_negative.ServersNegativeTestJSON.test_server_name_blank [1.050211s],  tempest.api.compute.servers.test_servers_negative.ServersNegativeTestJSON.test_stop_non_existent_server [0.702188s],  tempest.api.compute.servers.test_servers_negative.ServersNegativeTestJSON.test_update_name_of_non_existent_server [0.870605s],  tempest.api.compute.servers.test_servers_negative.ServersNegativeTestJSON.test_update_server_name_length_exceeds_256 [0.535816s],  tempest.api.compute.servers.test_servers_negative.ServersNegativeTestJSON.test_update_server_set_empty_name [0.664678s],  tempest.api.compute.test_quotas.QuotasTestJSON.test_get_default_quotas [0.271735s],  tempest.api.compute.test_quotas.QuotasTestJSON.test_get_quotas [0.392426s],  tempest.api.compute.test_versions.TestVersions.test_list_api_versions [0.010119s],  tempest.api.compute.volumes.test_attach_volume.AttachVolumeTestJSON.test_list_get_volume_attachments [17.919866s],  tempest.api.identity.v3.test_api_discovery.TestApiDiscovery.test_api_media_types [0.084879s],  tempest.api.identity.v3.test_api_discovery.TestApiDiscovery.test_api_version_resources [0.052051s],  tempest.api.identity.v3.test_api_discovery.TestApiDiscovery.test_api_version_statuses [0.072215s],  tempest.api.identity.v3.test_t,  tempest.api.image.v2.test_images.BasicOperationsImagesTest.test_delete_image [0.821986s],  tempest.api.image.v2.test_images.BasicOperationsImagesTest.test_update_image [0.727633s],  tempest.api.image.v2.test_images.ListUserImagesTest.test_get_image_schema [0.013064s],  tempest.api.image.v2.test_images.ListUserImagesTest.test_get_images_schema [0.012275s],  tempest.api.image.v2.test_images.ListUserImagesTest.test_list_images_param_container_format [0.059973s],  tempest.api.image.v2.test_images.ListUserImagesTest.test_list_images_param_disk_format [0.064763s],  tempest.api.image.v2.test_images.ListUserImagesTest.test_list_images_param_limit [0.062407s],  tempest.api.image.v2.test_images.ListUserImagesTest.test_list_images_param_min_max_size [0.093465s],  tempest.api.image.v2.test_images.ListUserImagesTest.test_list_images_param_size [0.088803s],  tempest.api.image.v2.test_images.ListUserImagesTest.test_list_images_param_status [0.075456s],  tempest.api.image.v2.test_images.ListUserImagesTest.test_list_images_param_visibility [0.070367s],  tempest.api.image.v2.test_images.ListUserImagesTest.test_list_no_params [0.073151s],  tempest.api.image.v2.test_images_negative.ImagesNegativeTest.test_delete_image_null_id [0.266466s],  tempest.api.image.v2.test_images_negative.ImagesNegativeTest.test_delete_non_existing_image [0.226052s],  tempest.api.image.v2.test_images_negative.ImagesNegativeTest.test_get_delete_deleted_image [0.454073s],  tempest.api.image.v2.test_images_negative.ImagesNegativeTest.test_get_image_null_id [0.013060s],  tempest.api.image.v2.test_images_negative.ImagesNegativeTest.test_get_non_existent_image [0.029185s],  tempest.api.image.v2.test_images_tags.ImagesTagsTest.test_update_delete_tags_for_image [0.985261s],  tempest.api.image.v2.test_images_tags_negative.ImagesTagsNegativeTest.test_delete_non_existing_tag [0.694730s],  tempest.api.image.v2.test_images_tags_negative.ImagesTagsNegativeTest.test_update_tags_for_non_existing_image [0.068068s],  tempest.api.network.test_networks.NetworksTest.test_create_delete_subnet_all_attributes [1.633361s],  tempest.api.network.test_networks.NetworksTest.test_create_delete_subnet_with_allocation_pools [1.006776s],  tempest.api.network.test_networks.NetworksTest.test_create_delete_subnet_with_dhcp_enabled [1.505316s],  tempest.api.network.test_networks.NetworksTest.test_create_delete_subnet_with_gw [1.274790s],  tempest.api.network.test_networks.NetworksTest.test_create_delete_subnet_with_gw_and_allocation_pools [1.256100s],  tempest.api.network.test_networks.NetworksTest.test_create_delete_subnet_with_host_routes_and_dns_nameservers [1.175857s],  tempest.api.network.test_networks.NetworksTest.test_create_delete_subnet_without_gateway [1.350931s],  tempest.api.network.test_networks.NetworksTest.test_create_update_delete_network_subnet [3.384743s],  tempest.api.network.test_networks.NetworksTest.test_delete_network_with_subnet [1.271220s],  tempest.api.network.test_networks.NetworksTest.test_list_networks [0.082117s],  tempest.api.network.test_networks.NetworksTest.test_list_networks_fields [0.236781s],  tempest.api.network.test_networks.NetworksTest.test_list_subnets [0.107038s],  tempest.api.network.test_networks.NetworksTest.test_list_subnets_fields [0.082022s],  tempest.api.network.test_networks.NetworksTest.test_show_network [0.113444s],  tempest.api.network.test_networks.NetworksTest.test_show_network_fields [0.098341s],  tempest.api.network.test_networks.NetworksTest.test_show_subnet [0.100818s],  tempest.api.network.test_networks.NetworksTest.test_show_subnet_fields [0.092188s],  tempest.api.network.test_networks.NetworksTest.test_update_subnet_gw_dns_host_routes_dhcp [3.084300s],  tempest.api.network.test_ports.PortsTestJSON.test_create_bulk_port [1.883562s],  tempest.api.network.test_ports.PortsTestJSON.test_create_port_in_allowed_allocation_pools [2.776218s],  tempest.api.network.test_ports.PortsTestJSON.test_create_update_delete_port [1.265719s],  tempest.api.network.test_ports.PortsTestJSON.test_list_ports [0.070925s],  tempest.api.network.test_ports.PortsTestJSON.test_list_ports_fields [0.068590s],  tempest.api.network.test_ports.PortsTestJSON.test_show_port [0.044240s],  tempest.api.network.test_ports.PortsTestJSON.test_show_port_fields [0.064222s],  tempest.api.network.test_ports.PortsTestJSON.test_update_port_with_security_group_and_extra_attributes [4.997183s],  tempest.api.network.test_ports.PortsTestJSON.test_update_port_with_two_security_groups_and_extra_attributes [5.175736s],  tempest.api.network.test_security_groups.SecGroupTest.test_create_list_update_show_delete_security_group [1.067594s],  tempest.api.network.test_security_groups.SecGroupTest.test_create_security_group_rule_with_additional_args [0.542016s],  tempest.api.network.test_security_groups.SecGroupTest.test_create_security_group_rule_with_icmp_type_code [1.552969s],  tempest.api.network.test_security_groups.SecGroupTest.test_create_security_group_rule_with_protocol_integer_value [0.583751s],  tempest.api.network.test_security_groups.SecGroupTest.test_create_security_group_rule_with_remote_group_id [1.263737s],  tempest.api.network.test_security_groups.SecGroupTest.test_create_security_group_rule_with_remote_ip_prefix [0.574556s],  tempest.api.network.test_security_groups.SecGroupTest.test_create_show_delete_security_group_rule [0.791256s],  tempest.api.network.test_security_groups.SecGroupTest.test_list_security_groups [0.053851s],  tempest.api.network.test_security_groups_negative.NegativeSecGroupTest.test_create_additional_default_security_group_fails [0.262529s],  tempest.api.network.test_security_groups_negative.NegativeSecGroupTest.test_create_duplicate_security_group_rule_fails [0.956364s],  tempest.api.network.test_security_groups_negative.NegativeSecGroupTest.test_create_security_group_rule_with_bad_ethertype [0.282977s],  tempest.api.network.test_security_groups_negative.NegativeSecGroupTest.test_create_security_group_rule_with_bad_protocol [0.546180s],  tempest.api.network.test_security_groups_negative.NegativeSecGroupTest.test_create_security_group_rule_with_bad_remote_ip_prefix [0.334382s],  tempest.api.network.test_security_groups_negative.NegativeSecGroupTest.test_create_security_group_rule_with_invalid_ports [0.685053s],  tempest.api.network.test_security_groups_negative.NegativeSecGroupTest.test_create_security_group_rule_with_non_existent_remote_groupid [0.391128s],  tempest.api.network.test_security_groups_negative.NegativeSecGroupTest.test_create_security_group_rule_with_non_existent_security_group [0.077219s],  tempest.api.network.test_security_groups_negative.NegativeSecGroupTest.test_delete_non_existent_security_group [0.037909s],  tempest.api.network.test_security_groups_negative.NegativeSecGroupTest.test_show_non_existent_security_group [0.031075s],  tempest.api.network.test_security_groups_negative.NegativeSecGroupTest.test_show_non_existent_security_group_rule [0.023520s],  tempest.api.volume.test_availability_zone.AvailabilityZoneV2TestJSON.test_get_availability_zone_list [0.379018s],  tempest.api.volume.test_extensions.ExtensionsV2TestJSON.test_list_extensions [0.212468s],  tempest.api.volume.test_snapshot_metadata.SnapshotV2MetadataTestJSON.test_crud_snapshot_metadata [0.647183s],  tempest.api.volume.test_snapshot_metadata.SnapshotV2MetadataTestJSON.test_update_snapshot_metadata_item [0.550055s],  tempest.api.volume.test_volume_metadata.VolumesV2MetadataTest.test_crud_volume_metadata [0.486545s],  tempest.api.volume.test_volume_metadata.VolumesV2MetadataTest.test_update_volume_metadata_item [0.349450s],  tempest.api.volume.test_volumes_actions.VolumesV2ActionsTest.test_attach_detach_volume_to_instance [13.323163s],  tempest.api.volume.test_volumes_actions.VolumesV2ActionsTest.test_get_volume_attachment [14.056572s],  tempest.api.volume.test_volumes_actions.VolumesV2ActionsTest.test_reserve_unreserve_volume [0.377926s],  tempest.api.volume.test_volumes_actions.VolumesV2ActionsTest.test_volume_bootable [0.341289s],  tempest.api.volume.test_volumes_actions.VolumesV2ActionsTest.test_volume_readonly_update [0.422754s],  tempest.api.volume.test_volumes_get.VolumesV2GetTest.test_volume_create_get_update_delete [6.300193s],  tempest.api.volume.test_volumes_get.VolumesV2GetTest.test_volume_create_get_update_delete_as_clone [7.545675s],  tempest.api.volume.test_volumes_get.VolumesV2GetTest.test_volume_create_get_update_delete_from_image [8.948232s],  tempest.api.volume.test_volumes_list.VolumesV2ListTestJSON.test_volume_list [0.075360s],  tempest.api.volume.test_volumes_list.VolumesV2ListTestJSON.test_volume_list_by_name [0.070379s],  tempest.api.volume.test_volumes_list.VolumesV2ListTestJSON.test_volume_list_details_by_name [0.082469s],  tempest.api.volume.test_volumes_list.VolumesV2ListTestJSON.test_volume_list_param_display_name_and_status [0.076775s],  tempest.api.volume.test_volumes_list.VolumesV2ListTestJSON.test_volume_list_with_detail_param_display_name_and_status [0.243867s],  tempest.api.volume.test_volumes_list.VolumesV2ListTestJSON.test_volume_list_with_detail_param_metadata [0.091506s],  tempest.api.volume.test_volumes_list.VolumesV2ListTestJSON.test_volume_list_with_details [0.083182s],  tempest.api.volume.test_volumes_list.VolumesV2ListTestJSON.test_volume_list_with_param_metadata [0.083894s],  tempest.api.volume.test_volumes_list.VolumesV2ListTestJSON.test_volumes_list_by_availability_zone [0.147347s],  tempest.api.volume.test_volumes_list.VolumesV2ListTestJSON.test_volumes_list_by_status [0.166567s],  tempest.api.volume.test_volumes_list.VolumesV2ListTestJSON.test_volumes_list_details_by_availability_zone [0.074377s],  tempest.api.volume.test_volumes_list.VolumesV2ListTestJSON.test_volumes_list_details_by_status [0.090774s],  tempest.api.volume.test_volumes_negative.VolumesV2NegativeTest.test_attach_volumes_with_nonexistent_volume_id [13.817175s],  tempest.api.volume.test_volumes_negative.VolumesV2NegativeTest.test_create_volume_with_invalid_size [0.017074s],  tempest.api.volume.test_volumes_negative.VolumesV2NegativeTest.test_create_volume_with_nonexistent_snapshot_id [0.051350s],  tempest.api.volume.test_volumes_negative.VolumesV2NegativeTest.test_create_volume_with_nonexistent_source_volid [0.056210s],  tempest.api.volume.test_volumes_negative.VolumesV2NegativeTest.test_create_volume_with_nonexistent_volume_type [0.028961s],  tempest.api.volume.test_volumes_negative.VolumesV2NegativeTest.test_create_volume_with_size_negative [0.016721s],  tempest.api.volume.test_volumes_negative.VolumesV2NegativeTest.test_create_volume_with_size_zero [0.016333s],  tempest.api.volume.test_volumes_negative.VolumesV2NegativeTest.test_create_volume_without_passing_size [0.044620s],  tempest.api.volume.test_volumes_negative.VolumesV2NegativeTest.test_delete_invalid_volume_id [0.069039s],  tempest.api.volume.test_volumes_negative.VolumesV2NegativeTest.test_delete_volume_without_passing_volume_id [0.010335s],  tempest.api.volume.test_volumes_negative.VolumesV2NegativeTest.test_detach_volumes_with_invalid_volume_id [0.071347s],  tempest.api.volume.test_volumes_negative.VolumesV2NegativeTest.test_get_invalid_volume_id [0.074172s],  tempest.api.volume.test_volumes_negative.VolumesV2NegativeTest.test_get_volume_without_passing_volume_id [0.011812s],  tempest.api.volume.test_volumes_negative.VolumesV2NegativeTest.test_list_volumes_detail_with_invalid_status [0.073732s],  tempest.api.volume.test_volumes_negative.VolumesV2NegativeTest.test_list_volumes_detail_with_nonexistent_name [0.076178s],  tempest.api.volume.test_volumes_negative.VolumesV2NegativeTest.test_list_volumes_with_invalid_status [0.056298s],  tempest.api.volume.test_volumes_negative.VolumesV2NegativeTest.test_list_volumes_with_nonexistent_name [0.070498s],  tempest.api.volume.test_volumes_negative.VolumesV2NegativeTest.test_reserve_volume_with_negative_volume_status [0.227424s],  tempest.api.volume.test_volumes_negative.VolumesV2NegativeTest.test_reserve_volume_with_nonexistent_volume_id [0.199530s],  tempest.api.volume.test_volumes_negative.VolumesV2NegativeTest.test_unreserve_volume_with_nonexistent_volume_id [0.038964s],  tempest.api.volume.test_volumes_negative.VolumesV2NegativeTest.test_update_volume_with_empty_volume_id [0.009951s],  tempest.api.volume.test_volumes_negative.VolumesV2NegativeTest.test_update_volume_with_invalid_volume_id [0.073074s],  tempest.api.volume.test_volumes_negative.VolumesV2NegativeTest.test_update_volume_with_nonexistent_volume_id [0.062395s],  tempest.api.volume.test_volumes_negative.VolumesV2NegativeTest.test_volume_delete_nonexistent_volume_id [0.072413s],  tempest.api.volume.test_volumes_negative.VolumesV2NegativeTest.test_volume_get_nonexistent_volume_id [0.052550s],  tempest.api.volume.test_volumes_snapshots.VolumesV2SnapshotTestJSON.test_snapshot_create_get_list_update_delete [2.820917s],  tempest.api.volume.test_volumes_snapshots.VolumesV2SnapshotTestJSON.test_volume_from_snapshot [6.547828s],  tempest.api.volume.test_volumes_snapshots_list.VolumesV2SnapshotListTestJSON.test_snapshots_list_details_with_params [0.087205s],  tempest.api.volume.test_volumes_snapshots_list.VolumesV2SnapshotListTestJSON.test_snapshots_list_with_params [0.064530s],  tempest.api.volume.test_volumes_snapshots_negative.VolumesV2SnapshotNegativeTestJSON.test_create_snapshot_with_nonexistent_volume_id [0.309995s],  tempest.api.volume.test_volumes_snapshots_negative.VolumesV2SnapshotNegativeTestJSON.test_create_snapshot_without_passing_volume_id [0.074323s],  tempest.api.volume.v2.test_volumes_list.VolumesV2ListTestJSON.test_volume_list_details_pagination [0.520823s],  tempest.api.volume.v2.test_volumes_list.VolumesV2ListTestJSON.test_volume_list_details_with_multiple_params [0.117988s],  tempest.api.volume.v2.test_volumes_list.VolumesV2ListTestJSON.test_volume_list_pagination [0.516301s], ",
+                "skipped": ""
+            }
+        },
+        {
+            "project_name": "functest",
+            "scenario": "os-nosdn-ovs-noha",
+            "stop_date": "2017-06-01 10:55:15",
+            "trust_indicator": null,
+            "case_name": "tempest_smoke_serial",
+            "build_tag": "jenkins-functest-fuel-virtual-daily-danube-593",
+            "version": "danube",
+            "pod_name": "ericsson-virtual1",
+            "criteria": "PASS",
+            "installer": "fuel",
+            "_id": "592ff29378a2ad000ae6af4a",
+            "start_date": "2017-06-01 10:40:13",
+            "details": {
+                "failures": 0,
+                "tests": 119,
+                "errors": "",
+                "skipped": "2017-06-01 10:51:23.615 399 INFO opnfv-tempest [-] {0} tempest.scenario.test_server_multinode.TestServerMultinode"
+            }
+        },
+        {
+            "project_name": "functest",
+            "scenario": "os-nosdn-ovs-noha",
+            "stop_date": "2017-06-01 10:39:47",
+            "trust_indicator": null,
+            "case_name": "vping_userdata",
+            "build_tag": "jenkins-functest-fuel-virtual-daily-danube-593",
+            "version": "danube",
+            "pod_name": "ericsson-virtual1",
+            "criteria": "PASS",
+            "installer": "fuel",
+            "_id": "592feef378a2ad000ae6af43",
+            "start_date": "2017-06-01 10:39:05",
+            "details": {
+                "timestart": 1496313545.74844,
+                "duration": 41.6,
+                "status": "PASS"
+            }
+        },
+        {
+            "project_name": "functest",
+            "scenario": "os-nosdn-ovs-noha",
+            "stop_date": "2017-06-01 10:38:36",
+            "trust_indicator": null,
+            "case_name": "vping_ssh",
+            "build_tag": "jenkins-functest-fuel-virtual-daily-danube-593",
+            "version": "danube",
+            "pod_name": "ericsson-virtual1",
+            "criteria": "PASS",
+            "installer": "fuel",
+            "_id": "592feeac78a2ad000ae6af42",
+            "start_date": "2017-06-01 10:38:03",
+            "details": {
+                "timestart": 1496313483.802585,
+                "duration": 32.7,
+                "status": "PASS"
+            }
+        },
+        {
+            "project_name": "functest",
+            "scenario": "os-nosdn-ovs-noha",
+            "stop_date": "2017-06-01 10:37:55",
+            "trust_indicator": null,
+            "case_name": "snaps_health_check",
+            "build_tag": "jenkins-functest-fuel-virtual-daily-danube-593",
+            "version": "danube",
+            "pod_name": "ericsson-virtual1",
+            "criteria": "PASS",
+            "installer": "fuel",
+            "_id": "592fee8378a2ad000ae6af41",
+            "start_date": "2017-06-01 10:36:59",
+            "details": {}
+        },
+        {
+            "project_name": "functest",
+            "scenario": "os-nosdn-ovs-noha",
+            "stop_date": "2017-06-01 10:36:58",
+            "trust_indicator": null,
+            "case_name": "api_check",
+            "build_tag": "jenkins-functest-fuel-virtual-daily-danube-593",
+            "version": "danube",
+            "pod_name": "ericsson-virtual1",
+            "criteria": "PASS",
+            "installer": "fuel",
+            "_id": "592fee4a78a2ad000ae6af40",
+            "start_date": "2017-06-01 10:35:31",
+            "details": {}
+        },
+        {
+            "project_name": "functest",
+            "scenario": "os-nosdn-ovs-noha",
+            "stop_date": "2017-06-01 10:35:30",
+            "trust_indicator": null,
+            "case_name": "connection_check",
+            "build_tag": "jenkins-functest-fuel-virtual-daily-danube-593",
+            "version": "danube",
+            "pod_name": "ericsson-virtual1",
+            "criteria": "PASS",
+            "installer": "fuel",
+            "_id": "592fedf378a2ad000ae6af3f",
+            "start_date": "2017-06-01 10:35:29",
+            "details": {}
+        },
+        {
+            "project_name": "functest",
+            "scenario": "os-nosdn-kvm_ovs_dpdk_bar-ha",
+            "stop_date": "2017-06-01 10:44:39",
+            "trust_indicator": null,
+            "case_name": "rally_sanity",
+            "build_tag": "jenkins-functest-fuel-baremetal-daily-danube-515",
+            "version": "danube",
+            "pod_name": "lf-pod2",
+            "criteria": "PASS",
+            "installer": "fuel",
+            "_id": "592ff01778a2ad000ae6af44",
+            "start_date": "2017-06-01 10:31:51",
+            "details": [
+                {
+                    "details": {
+                        "duration": "     54.14",
+                        "success": "100.00",
+                        "nb tests": 12
+                    },
+                    "module": "authenticate     "
+                },
+                {
+                    "details": {
+                        "duration": "    103.14",
+                        "success": "100.00",
+                        "nb tests": 11
+                    },
+                    "module": "glance           "
+                },
+                {
+                    "details": {
+                        "duration": "    145.53",
+                        "success": "100.00",
+                        "nb tests": 19
+                    },
+                    "module": "cinder           "
+                },
+                {
+                    "details": {
+                        "duration": "     88.00",
+                        "success": "100.00",
+                        "nb tests": 16
+                    },
+                    "module": "heat             "
+                },
+                {
+                    "details": {
+                        "duration": "    152.15",
+                        "success": "100.00",
+                        "nb tests": 72
+                    },
+                    "module": "keystone         "
+                },
+                {
+                    "details": {
+                        "duration": "    235.29",
+                        "success": "100.00",
+                        "nb tests": 30
+                    },
+                    "module": "neutron          "
+                },
+                {
+                    "details": {
+                        "duration": "    329.40",
+                        "success": "100.00",
+                        "nb tests": 26
+                    },
+                    "module": "nova             "
+                },
+                {
+                    "details": {
+                        "duration": "     60.41",
+                        "success": "100.00",
+                        "nb tests": 12
+                    },
+                    "module": "quotas           "
+                },
+                {
+                    "details": {
+                        "duration": "      8.36",
+                        "success": "100.00",
+                        "nb tests": 2
+                    },
+                    "module": "requests         "
+                },
+                {
+                    "summary": {
+                        "duration": 1176.42,
+                        "nb success": "100.00",
+                        "nb tests": 200
+                    }
+                }
+            ]
+        },
+        {
+            "project_name": "functest",
+            "scenario": "os-nosdn-nofeature-noha",
+            "stop_date": "2017-06-01 10:31:20",
+            "trust_indicator": null,
+            "case_name": "api_check",
+            "build_tag": "jenkins-functest-daisy-virtual-daily-master-69",
+            "version": "master",
+            "pod_name": "zte-virtual1",
+            "criteria": "PASS",
+            "installer": "daisy",
+            "_id": "592fecf878a2ad000ae6af3c",
+            "start_date": "2017-06-01 10:28:07",
+            "details": {
+                "failures": [],
+                "errors": []
+            }
+        },
+        {
+            "project_name": "functest",
+            "scenario": "os-nosdn-nofeature-noha",
+            "stop_date": "2017-06-01 10:28:05",
+            "trust_indicator": null,
+            "case_name": "connection_check",
+            "build_tag": "jenkins-functest-daisy-virtual-daily-master-69",
+            "version": "master",
+            "pod_name": "zte-virtual1",
+            "criteria": "PASS",
+            "installer": "daisy",
+            "_id": "592fec3678a2ad000ae6af3b",
+            "start_date": "2017-06-01 10:28:03",
+            "details": {
+                "failures": [],
+                "errors": []
+            }
+        },
+        {
+            "project_name": "yardstick",
+            "description": "yardstick ci scenario status",
+            "scenario": "os-nosdn-ovs-noha",
+            "stop_date": "2017-06-01 10:19:15",
+            "trust_indicator": null,
+            "case_name": "scenario_status",
+            "build_tag": null,
+            "version": "master",
+            "pod_name": "ericsson-virtual2",
+            "criteria": "FAILED",
+            "installer": "fuel",
+            "_id": "592fea2378a2ad000ae6af3a",
+            "start_date": "2017-06-01 10:17:24",
+            "details": ""
+        },
+        {
+            "project_name": "functest",
+            "scenario": "os-nosdn-ovs-noha",
+            "stop_date": "2017-06-01 10:12:30",
+            "trust_indicator": null,
+            "case_name": "api_check",
+            "build_tag": "jenkins-functest-fuel-virtual-daily-master-1860",
+            "version": "master",
+            "pod_name": "ericsson-virtual2",
+            "criteria": "PASS",
+            "installer": "fuel",
+            "_id": "592fe88e78a2ad000ae6af39",
+            "start_date": "2017-06-01 10:10:47",
+            "details": {
+                "failures": [],
+                "errors": []
+            }
+        },
+        {
+            "project_name": "functest",
+            "scenario": "os-nosdn-ovs-noha",
+            "stop_date": "2017-06-01 10:10:46",
+            "trust_indicator": null,
+            "case_name": "connection_check",
+            "build_tag": "jenkins-functest-fuel-virtual-daily-master-1860",
+            "version": "master",
+            "pod_name": "ericsson-virtual2",
+            "criteria": "PASS",
+            "installer": "fuel",
+            "_id": "592fe82678a2ad000ae6af38",
+            "start_date": "2017-06-01 10:10:44",
+            "details": {
+                "failures": [],
+                "errors": []
+            }
+        },
+        {
+            "project_name": "functest",
+            "scenario": "os-nosdn-kvm_ovs_dpdk_bar-ha",
+            "stop_date": "2017-06-01 10:31:32",
+            "trust_indicator": null,
+            "case_name": "tempest_smoke_serial",
+            "build_tag": "jenkins-functest-fuel-baremetal-daily-danube-515",
+            "version": "danube",
+            "pod_name": "lf-pod2",
+            "criteria": "PASS",
+            "installer": "fuel",
+            "_id": "592fed0478a2ad000ae6af3d",
+            "start_date": "2017-06-01 10:08:32",
+            "details": {
+                "failures": 0,
+                "tests": 119,
+                "errors": "",
+                "skipped": "2017-06-01 10:16:07.240 393 INFO opnfv-tempest [-] {0} tempest.api.object_storage.test_account_quotas.AccountQuotasTest2017-06-01 10:16:07.242 393 INFO opnfv-tempest [-] {0} tempest.api.object_storage.test_account_services.AccountTest2017-06-01 10:16:07.243 393 INFO opnfv-tempest [-] {0} tempest.api.object_storage.test_container_quotas.ContainerQuotasTest2017-06-01 10:16:07.244 393 INFO opnfv-tempest [-] {0} tempest.api.object_storage.test_container_services.ContainerTest2017-06-01 10:16:07.245 393 INFO opnfv-tempest [-] {0} tempest.api.object_storage.test_object_services.ObjectTest2017-06-01 10:22:56.461 393 INFO opnfv-tempest [-] {0} tempest.scenario.test_server_multinode.TestServerMultinode"
+            }
+        },
+        {
+            "project_name": "functest",
+            "scenario": "os-nosdn-kvm_ovs_dpdk_bar-ha",
+            "stop_date": "2017-06-01 10:08:07",
+            "trust_indicator": null,
+            "case_name": "vping_userdata",
+            "build_tag": "jenkins-functest-fuel-baremetal-daily-danube-515",
+            "version": "danube",
+            "pod_name": "lf-pod2",
+            "criteria": "PASS",
+            "installer": "fuel",
+            "_id": "592fe78778a2ad000ae6af37",
+            "start_date": "2017-06-01 10:06:45",
+            "details": {
+                "timestart": 1496311605.649088,
+                "duration": 81.7,
+                "status": "PASS"
+            }
+        },
+        {
+            "project_name": "functest",
+            "scenario": "os-nosdn-kvm_ovs_dpdk_bar-ha",
+            "stop_date": "2017-06-01 10:06:15",
+            "trust_indicator": null,
+            "case_name": "vping_ssh",
+            "build_tag": "jenkins-functest-fuel-baremetal-daily-danube-515",
+            "version": "danube",
+            "pod_name": "lf-pod2",
+            "criteria": "PASS",
+            "installer": "fuel",
+            "_id": "592fe71778a2ad000ae6af36",
+            "start_date": "2017-06-01 10:04:50",
+            "details": {
+                "timestart": 1496311490.763468,
+                "duration": 84.2,
+                "status": "PASS"
+            }
+        },
+        {
+            "project_name": "functest",
+            "scenario": "os-nosdn-kvm_ovs_dpdk_bar-ha",
+            "stop_date": "2017-06-01 10:04:41",
+            "trust_indicator": null,
+            "case_name": "snaps_health_check",
+            "build_tag": "jenkins-functest-fuel-baremetal-daily-danube-515",
+            "version": "danube",
+            "pod_name": "lf-pod2",
+            "criteria": "PASS",
+            "installer": "fuel",
+            "_id": "592fe6b978a2ad000ae6af35",
+            "start_date": "2017-06-01 10:03:16",
+            "details": {}
+        },
+        {
+            "project_name": "functest",
+            "scenario": "os-nosdn-kvm_ovs_dpdk_bar-ha",
+            "stop_date": "2017-06-01 10:03:15",
+            "trust_indicator": null,
+            "case_name": "api_check",
+            "build_tag": "jenkins-functest-fuel-baremetal-daily-danube-515",
+            "version": "danube",
+            "pod_name": "lf-pod2",
+            "criteria": "PASS",
+            "installer": "fuel",
+            "_id": "592fe66478a2ad000ae6af34",
+            "start_date": "2017-06-01 10:01:59",
+            "details": {}
+        },
+        {
+            "project_name": "functest",
+            "scenario": "os-nosdn-kvm_ovs_dpdk_bar-ha",
+            "stop_date": "2017-06-01 10:01:58",
+            "trust_indicator": null,
+            "case_name": "connection_check",
+            "build_tag": "jenkins-functest-fuel-baremetal-daily-danube-515",
+            "version": "danube",
+            "pod_name": "lf-pod2",
+            "criteria": "PASS",
+            "installer": "fuel",
+            "_id": "592fe61678a2ad000ae6af33",
+            "start_date": "2017-06-01 10:01:57",
+            "details": {}
+        }
+    ]
+}

@@ -23,6 +23,7 @@ import datetime
 import sys
 import unittest
 
+import dateutil.tz
 import httpretty
 import pkg_resources
 
@@ -31,8 +32,11 @@ import pkg_resources
 sys.path.insert(0, '..')
 pkg_resources.declare_namespace('perceval.backends')
 
+from perceval.backend import BackendCommandArgumentParser
+from perceval.utils import DEFAULT_DATETIME
 from perceval.backends.opnfv.functest import (Functest,
-                                              FunctestClient)
+                                              FunctestClient,
+                                              FunctestCommand)
 
 
 def read_file(filename, mode='r'):
@@ -170,6 +174,32 @@ class TestFunctestClient(unittest.TestCase):
         self.assertEqual(req.method, 'GET')
         self.assertRegex(req.path, '/api/v1/results')
         self.assertDictEqual(req.querystring, expected)
+
+
+class TestFunctestCommand(unittest.TestCase):
+    """Tests for FunctestCommand class"""
+
+    def test_backend_class(self):
+        """Test if the backend class is Functest"""
+
+        self.assertIs(FunctestCommand.BACKEND, Functest)
+
+    def test_setup_cmd_parser(self):
+        """Test if it parser object is correctly initialized"""
+
+        parser = FunctestCommand.setup_cmd_parser()
+        self.assertIsInstance(parser, BackendCommandArgumentParser)
+
+        args = ['--from-date', '1970-01-01',
+                '--to-date', '2010-01-01',
+                'http://example.com']
+
+        parsed_args = parser.parse(*args)
+        self.assertEqual(parsed_args.url, 'http://example.com')
+        self.assertEqual(parsed_args.from_date, DEFAULT_DATETIME)
+        self.assertEqual(parsed_args.to_date,
+                         datetime.datetime(2010, 1, 1, 0, 0, 0,
+                                           tzinfo=dateutil.tz.tzutc()))
 
 
 if __name__ == "__main__":

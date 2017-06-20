@@ -28,6 +28,8 @@ from grimoirelab.toolkit.datetime import datetime_to_utc, str_to_datetime
 from grimoirelab.toolkit.uris import urijoin
 
 from ...backend import (Backend,
+                        BackendCommand,
+                        BackendCommandArgumentParser,
                         metadata)
 from ...utils import DEFAULT_DATETIME
 
@@ -200,3 +202,22 @@ class FunctestClient:
         r.raise_for_status()
 
         return r.text
+
+
+class FunctestCommand(BackendCommand):
+    """Class to run Functest backend from the command line."""
+
+    BACKEND = Functest
+
+    @staticmethod
+    def setup_cmd_parser():
+        """Returns the Functest argument parser."""
+
+        parser = BackendCommandArgumentParser(from_date=True,
+                                              to_date=True)
+
+        # Required arguments
+        parser.parser.add_argument('url',
+                                   help="URL of the Functest server")
+
+        return parser

@@ -53,11 +53,30 @@ FUNCTEST_RESULTS_URL = FUNCTEST_API_URL + 'results'
 def setup_http_server():
     """Setup a mock HTTP server"""
 
-    body = read_file('data/functest/functest_results.json', 'rb')
+    page1 = read_file('data/functest/functest_results_page_1.json', 'rb')
+    page2 = read_file('data/functest/functest_results_page_2.json', 'rb')
+    empty_page = read_file('data/functest/functest_results_empty.json', 'rb')
+
+    def request_callback(method, uri, headers):
+        params = httpretty.last_request().querystring
+        status = 200
+
+        if params['from'][0] == '2020-01-01 00:00:00':
+            body = empty_page
+        elif 'page' not in params:
+            body = page1
+        elif ('page' in params and params['page'][0] == '2'):
+            body = page2
+        else:
+            raise
+
+        return (status, headers, body)
 
     httpretty.register_uri(httpretty.GET,
                            FUNCTEST_RESULTS_URL,
-                           body=body, status=200)
+                           responses=[
+                               httpretty.Response(body=request_callback)
+                           ])
 
 
 class TestFunctestBackend(unittest.TestCase):
@@ -121,6 +140,22 @@ class TestFunctestBackend(unittest.TestCase):
         self.assertEqual(item['data']['_id'], '592fe61678a2ad000ae6af33')
 
         # Check requests
+        self.assertEqual(len(httpretty.httpretty.latest_requests), 2)
+
+    @httpretty.activate
+    def test_fetch_empty(self):
+        """Test whether it works when no data is returned"""
+
+        setup_http_server()
+
+        from_date = datetime.datetime(2020, 1, 1)
+
+        functest = Functest(FUNCTEST_URL)
+        items = [item for item in functest.fetch(from_date=from_date)]
+
+        self.assertEqual(len(items), 0)
+
+        # Check requests
         self.assertEqual(len(httpretty.httpretty.latest_requests), 1)
 
     def test_parse_json(self):
@@ -150,12 +185,13 @@ class TestFunctestClient(unittest.TestCase):
         # Call API
         client = FunctestClient(FUNCTEST_URL)
         from_date = datetime.datetime(2017, 6, 1, 10, 0, 0)
-        response = client.results(from_date=from_date)
+        results = [r for r in client.results(from_date=from_date)]
 
         req = httpretty.last_request()
 
         expected = {
-            'from': ['2017-06-01 10:00:00']
+            'from': ['2017-06-01 10:00:00'],
+            'page': ['2']
         }
         self.assertEqual(req.method, 'GET')
         self.assertRegex(req.path, '/api/v1/results')
@@ -163,13 +199,14 @@ class TestFunctestClient(unittest.TestCase):
 
         # Test using to_date value
         to_date = datetime.datetime(2017, 6, 1, 11, 0, 0)
-        response = client.results(from_date=from_date, to_date=to_date)
+        results = [r for r in client.results(from_date=from_date, to_date=to_date)]
 
         req = httpretty.last_request()
 
         expected = {
             'from': ['2017-06-01 10:00:00'],
-            'to': ['2017-06-01 11:00:00']
+            'to': ['2017-06-01 11:00:00'],
+            'page': ['2']
         }
         self.assertEqual(req.method, 'GET')
         self.assertRegex(req.path, '/api/v1/results')

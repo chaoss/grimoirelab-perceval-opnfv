@@ -47,7 +47,7 @@ class Functest(Backend):
     :param url: Functest URL
     :param tag: label used to mark the data
     """
-    version = '0.1.0'
+    version = '0.1.1'
 
     def __init__(self, url, tag=None):
         origin = url
@@ -75,15 +75,17 @@ class Functest(Backend):
         from_date = datetime_to_utc(from_date)
         to_date = datetime_to_utc(to_date) if to_date else None
 
-        raw_data = self.client.results(from_date=from_date,
-                                       to_date=to_date)
-        parsed_data = self.parse_json(raw_data)
+        pages = self.client.results(from_date=from_date,
+                                    to_date=to_date)
 
         ndata = 0
 
-        for test_data in parsed_data:
-            yield test_data
-            ndata += 1
+        for raw_page in pages:
+            parsed_data = self.parse_json(raw_page)
+
+            for test_data in parsed_data:
+                yield test_data
+                ndata += 1
 
         logger.info("Fetch process completed: %s tests data fetched", ndata)
 
@@ -166,6 +168,7 @@ class FunctestClient:
     # API parameters
     PFROM_DATE = 'from'
     PTO_DATE = 'to'
+    PPAGE = 'page'
 
     def __init__(self, base_url):
         self.base_url = base_url
@@ -182,9 +185,18 @@ class FunctestClient:
             tdt = to_date.strftime("%Y-%m-%d %H:%M:%S")
             params[self.PTO_DATE] = tdt
 
-        response = self._fetch(self.RRESULTS, params)
+        while True:
+            response = self._fetch(self.RRESULTS, params)
+            yield response
 
-        return response
+            j = json.loads(response)
+            page = j['pagination']['current_page']
+            total_pages = j['pagination']['total_pages']
+
+            if page >= total_pages:
+                break
+
+            params[self.PPAGE] = page + 1
 
     def _fetch(self, resource, params):
         """Fetch a resource.

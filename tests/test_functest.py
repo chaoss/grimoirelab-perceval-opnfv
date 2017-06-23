@@ -22,6 +22,7 @@
 import datetime
 import sys
 import unittest
+import unittest.mock
 
 import dateutil.tz
 import httpretty
@@ -113,8 +114,11 @@ class TestFunctestBackend(unittest.TestCase):
         self.assertEqual(Functest.has_resuming(), False)
 
     @httpretty.activate
-    def test_fetch(self):
+    @unittest.mock.patch('perceval.backends.opnfv.functest.datetime_utcnow')
+    def test_fetch(self, mock_utcnow):
         """Test whether it fetches data from a repository"""
+
+        mock_utcnow.return_value = datetime.datetime(2017, 6, 1, 11, 0, 0)
 
         setup_http_server()
 
@@ -140,7 +144,71 @@ class TestFunctestBackend(unittest.TestCase):
         self.assertEqual(item['data']['_id'], '592fe61678a2ad000ae6af33')
 
         # Check requests
-        self.assertEqual(len(httpretty.httpretty.latest_requests), 2)
+        expected = [
+            {
+                'from': ['1970-01-01 00:00:00'],
+                'to': ['2017-06-01 11:00:00']
+            },
+            {
+                'from': ['1970-01-01 00:00:00'],
+                'to': ['2017-06-01 11:00:00'],
+                'page': ['2']
+            }
+        ]
+
+        latest_requests = httpretty.httpretty.latest_requests
+        self.assertEqual(len(latest_requests), 2)
+        self.assertDictEqual(latest_requests[0].querystring, expected[0])
+        self.assertDictEqual(latest_requests[1].querystring, expected[1])
+
+    @httpretty.activate
+    def test_fetch_from_date(self):
+        """Test whether it fetches data from a repository using dates for filtering"""
+
+        from_date = datetime.datetime(2017, 6, 1, 10, 0, 0)
+        to_date = datetime.datetime(2017, 6, 1, 11, 0, 0)
+
+        setup_http_server()
+
+        functest = Functest(FUNCTEST_URL)
+        items = [item for item in functest.fetch(from_date=from_date,
+                                                 to_date=to_date)]
+
+        self.assertEqual(len(items), 27)
+
+        item = items[0]
+        self.assertEqual(item['uuid'], '14d307c6511ad3e670a9b6cbef0942a4b5d09ab0')
+        self.assertEqual(item['origin'], FUNCTEST_URL)
+        self.assertEqual(item['updated_on'], 1496314767.0)
+        self.assertEqual(item['category'], 'functest')
+        self.assertEqual(item['tag'], FUNCTEST_URL)
+        self.assertEqual(item['data']['_id'], '592ff62c78a2ad000ae6af4d')
+
+        item = items[26]
+        self.assertEqual(item['uuid'], 'cca9bf1e338b4cac4fbedf1d0cc46b2f36465e8c')
+        self.assertEqual(item['origin'], FUNCTEST_URL)
+        self.assertEqual(item['updated_on'], 1496311317.0)
+        self.assertEqual(item['category'], 'functest')
+        self.assertEqual(item['tag'], FUNCTEST_URL)
+        self.assertEqual(item['data']['_id'], '592fe61678a2ad000ae6af33')
+
+        # Check requests
+        expected = [
+            {
+                'from': ['2017-06-01 10:00:00'],
+                'to': ['2017-06-01 11:00:00']
+            },
+            {
+                'from': ['2017-06-01 10:00:00'],
+                'to': ['2017-06-01 11:00:00'],
+                'page': ['2']
+            }
+        ]
+
+        latest_requests = httpretty.httpretty.latest_requests
+        self.assertEqual(len(latest_requests), 2)
+        self.assertDictEqual(latest_requests[0].querystring, expected[0])
+        self.assertDictEqual(latest_requests[1].querystring, expected[1])
 
     @httpretty.activate
     def test_fetch_empty(self):

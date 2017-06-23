@@ -24,7 +24,9 @@ import logging
 
 import requests
 
-from grimoirelab.toolkit.datetime import datetime_to_utc, str_to_datetime
+from grimoirelab.toolkit.datetime import (datetime_utcnow,
+                                          datetime_to_utc,
+                                          str_to_datetime)
 from grimoirelab.toolkit.uris import urijoin
 
 from ...backend import (Backend,
@@ -47,7 +49,7 @@ class Functest(Backend):
     :param url: Functest URL
     :param tag: label used to mark the data
     """
-    version = '0.1.1'
+    version = '0.1.2'
 
     def __init__(self, url, tag=None):
         origin = url
@@ -68,16 +70,15 @@ class Functest(Backend):
 
         :returns: a generator of items
         """
+        from_date = datetime_to_utc(from_date)
+        to_date = datetime_to_utc(to_date) if to_date else datetime_utcnow()
+
         logger.info("Fetching tests data of '%s' group from %s to %s",
                     self.url, str(from_date),
                     str(to_date) if to_date else '--')
 
-        from_date = datetime_to_utc(from_date)
-        to_date = datetime_to_utc(to_date) if to_date else None
-
         pages = self.client.results(from_date=from_date,
                                     to_date=to_date)
-
         ndata = 0
 
         for raw_page in pages:

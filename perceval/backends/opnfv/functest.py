@@ -49,7 +49,7 @@ class Functest(Backend):
     :param url: Functest URL
     :param tag: label used to mark the data
     """
-    version = '0.1.2'
+    version = '0.1.3'
 
     def __init__(self, url, tag=None):
         origin = url
@@ -179,7 +179,8 @@ class FunctestClient:
 
         fdt = from_date.strftime("%Y-%m-%d %H:%M:%S")
         params = {
-            self.PFROM_DATE: fdt
+            self.PFROM_DATE: fdt,
+            self.PPAGE: 1
         }
 
         if to_date:

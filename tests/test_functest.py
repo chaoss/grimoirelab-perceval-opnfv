@@ -64,7 +64,7 @@ def setup_http_server():
 
         if params['from'][0] == '2020-01-01 00:00:00':
             body = empty_page
-        elif 'page' not in params:
+        elif ('page' in params and params['page'][0] == '1'):
             body = page1
         elif ('page' in params and params['page'][0] == '2'):
             body = page2
@@ -147,7 +147,8 @@ class TestFunctestBackend(unittest.TestCase):
         expected = [
             {
                 'from': ['1970-01-01 00:00:00'],
-                'to': ['2017-06-01 11:00:00']
+                'to': ['2017-06-01 11:00:00'],
+                'page': ['1']
             },
             {
                 'from': ['1970-01-01 00:00:00'],
@@ -196,7 +197,8 @@ class TestFunctestBackend(unittest.TestCase):
         expected = [
             {
                 'from': ['2017-06-01 10:00:00'],
-                'to': ['2017-06-01 11:00:00']
+                'to': ['2017-06-01 11:00:00'],
+                'page': ['1']
             },
             {
                 'from': ['2017-06-01 10:00:00'],

@@ -21,6 +21,7 @@
 
 import json
 import logging
+import time
 
 import requests
 
@@ -33,6 +34,7 @@ from ...backend import (Backend,
                         BackendCommand,
                         BackendCommandArgumentParser,
                         metadata)
+from ...errors import BackendError
 from ...utils import DEFAULT_DATETIME
 
 
@@ -49,7 +51,7 @@ class Functest(Backend):
     :param url: Functest URL
     :param tag: label used to mark the data
     """
-    version = '0.1.3'
+    version = '0.1.4'
 
     def __init__(self, url, tag=None):
         origin = url
@@ -171,6 +173,9 @@ class FunctestClient:
     PTO_DATE = 'to'
     PPAGE = 'page'
 
+    # Maximum retries per request
+    MAX_RETRIES = 3
+
     def __init__(self, base_url):
         self.base_url = base_url
 
@@ -212,8 +217,19 @@ class FunctestClient:
         logger.debug("Functest client requests: %s params: %s",
                      resource, str(params))
 
-        r = requests.get(url, params=params)
-        r.raise_for_status()
+        retries = 0
+
+        while retries < self.MAX_RETRIES:
+            try:
+                r = requests.get(url, params=params)
+                r.raise_for_status()
+                break
+            except requests.exceptions.ConnectionError:
+                time.sleep(0.5 * retries)
+                retries += 1
+        else:
+            msg = "Max retries exceeded accessing %s" % url
+            raise BackendError(cause=msg)
 
         return r.text
 

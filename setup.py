@@ -44,7 +44,7 @@ except (IOError, ImportError):
         long_description = f.read()
 
 
-version = '0.1.0'
+version = '0.1.1'
 
 
 setup(name="perceval-opnfv",

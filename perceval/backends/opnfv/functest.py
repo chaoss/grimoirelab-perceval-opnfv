@@ -51,7 +51,7 @@ class Functest(Backend):
     :param url: Functest URL
     :param tag: label used to mark the data
     """
-    version = '0.1.4'
+    version = '0.1.5'
 
     def __init__(self, url, tag=None):
         origin = url

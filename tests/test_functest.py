@@ -20,19 +20,12 @@
 #
 
 import datetime
-import sys
 import unittest
 import unittest.mock
 
 import httpretty
-import pkg_resources
 import dateutil.tz
 import requests.exceptions
-
-# Hack to make sure that tests import the right packages
-# due to setuptools behaviour
-sys.path.insert(0, '..')
-pkg_resources.declare_namespace('perceval.backends')
 
 from perceval.backend import BackendCommandArgumentParser
 from perceval.errors import BackendError

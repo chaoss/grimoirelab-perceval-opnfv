@@ -68,9 +68,6 @@ setup(name="perceval-opnfv",
           'perceval.backends',
           'perceval.backends.opnfv'
       ],
-      namespaces=[
-          'perceval.backends'
-      ],
       install_requires=[
           'requests>=2.7.0',
           'grimoirelab-toolkit>=0.1.0',

@@ -25,10 +25,8 @@ import unittest.mock
 
 import httpretty
 import dateutil.tz
-import requests.exceptions
 
 from perceval.backend import BackendCommandArgumentParser
-from perceval.errors import BackendError
 from perceval.utils import DEFAULT_DATETIME
 from perceval.backends.opnfv.functest import (Functest,
                                               FunctestClient,
@@ -276,23 +274,6 @@ class TestFunctestClient(unittest.TestCase):
         self.assertEqual(req.method, 'GET')
         self.assertRegex(req.path, '/api/v1/results')
         self.assertDictEqual(req.querystring, expected)
-
-    @httpretty.activate
-    @unittest.mock.patch('requests.get')
-    def test_connection_error(self, mock_get):
-        """Check if a connection error exception is raised after predefined tries"""
-
-        mock_get.side_effect = requests.exceptions.ConnectionError()
-
-        # Set up a mock HTTP server
-        setup_http_server()
-
-        # Call API
-        client = FunctestClient(FUNCTEST_URL)
-        from_date = datetime.datetime(2017, 6, 1, 10, 0, 0)
-
-        with self.assertRaises(BackendError):
-            _ = [r for r in client.results(from_date=from_date)]
 
 
 class TestFunctestCommand(unittest.TestCase):

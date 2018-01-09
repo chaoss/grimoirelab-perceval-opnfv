@@ -21,9 +21,6 @@
 
 import json
 import logging
-import time
-
-import requests
 
 from grimoirelab.toolkit.datetime import (datetime_utcnow,
                                           datetime_to_utc,
@@ -34,7 +31,7 @@ from ...backend import (Backend,
                         BackendCommand,
                         BackendCommandArgumentParser,
                         metadata)
-from ...errors import BackendError
+from ...client import HttpClient
 from ...utils import DEFAULT_DATETIME
 
 
@@ -51,7 +48,7 @@ class Functest(Backend):
     :param url: Functest URL
     :param tag: label used to mark the data
     """
-    version = '0.1.5'
+    version = '0.2.0'
 
     def __init__(self, url, tag=None):
         origin = url
@@ -155,7 +152,7 @@ class Functest(Backend):
         return result['results']
 
 
-class FunctestClient:
+class FunctestClient(HttpClient):
     """Functest REST API client.
 
     This class implements a simple client to retrieve data
@@ -177,7 +174,7 @@ class FunctestClient:
     MAX_RETRIES = 3
 
     def __init__(self, base_url):
-        self.base_url = base_url
+        super().__init__(base_url, max_retries=FunctestClient.MAX_RETRIES)
 
     def results(self, from_date, to_date=None):
         """Get test cases results."""
@@ -193,10 +190,12 @@ class FunctestClient:
             params[self.PTO_DATE] = tdt
 
         while True:
-            response = self._fetch(self.RRESULTS, params)
-            yield response
+            url = urijoin(self.base_url, self.FUNCTEST_API_PATH, self.RRESULTS)
+            response = self.fetch(url, payload=params)
+            content = response.text
+            yield content
 
-            j = json.loads(response)
+            j = json.loads(content)
             page = j['pagination']['current_page']
             total_pages = j['pagination']['total_pages']
 
@@ -204,34 +203,6 @@ class FunctestClient:
                 break
 
             params[self.PPAGE] = page + 1
-
-    def _fetch(self, resource, params):
-        """Fetch a resource.
-
-        :param resource: resource to fetch
-        :param params: dict with the HTTP parameters needed to call
-            the given method
-        """
-        url = urijoin(self.base_url, self.FUNCTEST_API_PATH, resource)
-
-        logger.debug("Functest client requests: %s params: %s",
-                     resource, str(params))
-
-        retries = 0
-
-        while retries < self.MAX_RETRIES:
-            try:
-                r = requests.get(url, params=params)
-                r.raise_for_status()
-                break
-            except requests.exceptions.ConnectionError:
-                time.sleep(0.5 * retries)
-                retries += 1
-        else:
-            msg = "Max retries exceeded accessing %s" % url
-            raise BackendError(cause=msg)
-
-        return r.text
 
 
 class FunctestCommand(BackendCommand):

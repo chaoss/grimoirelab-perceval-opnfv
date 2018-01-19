@@ -27,10 +27,12 @@ import httpretty
 import dateutil.tz
 
 from perceval.backend import BackendCommandArgumentParser
-from perceval.utils import DEFAULT_DATETIME
 from perceval.backends.opnfv.functest import (Functest,
                                               FunctestClient,
                                               FunctestCommand)
+from perceval.utils import DEFAULT_DATETIME
+
+from tests.base import TestCaseBackendArchive
 
 
 def read_file(filename, mode='r'):
@@ -84,7 +86,7 @@ class TestFunctestBackend(unittest.TestCase):
         self.assertEqual(functest.url, FUNCTEST_URL)
         self.assertEqual(functest.origin, FUNCTEST_URL)
         self.assertEqual(functest.tag, 'test')
-        self.assertIsInstance(functest.client, FunctestClient)
+        self.assertIsNone(functest.client)
 
         # When tag is empty or None it will be set to
         # the value in
@@ -96,10 +98,10 @@ class TestFunctestBackend(unittest.TestCase):
         self.assertEqual(functest.origin, FUNCTEST_URL)
         self.assertEqual(functest.tag, FUNCTEST_URL)
 
-    def test_has_caching(self):
-        """Test if it returns False when has_caching is called"""
+    def test_has_archiving(self):
+        """Test if it returns True when has_archiving is called"""
 
-        self.assertEqual(Functest.has_caching(), False)
+        self.assertEqual(Functest.has_archiving(), True)
 
     def test_has_resuming(self):
         """Test if it returns False when has_resuming is called"""
@@ -116,7 +118,7 @@ class TestFunctestBackend(unittest.TestCase):
         setup_http_server()
 
         functest = Functest(FUNCTEST_URL)
-        items = [item for item in functest.fetch()]
+        items = [item for item in functest.fetch(from_date=None, to_date=None)]
 
         self.assertEqual(len(items), 27)
 
@@ -228,6 +230,42 @@ class TestFunctestBackend(unittest.TestCase):
 
         data = Functest.parse_json(raw_json)
         self.assertEqual(len(data), 27)
+
+
+class TestFunctestBackendArchive(TestCaseBackendArchive):
+    """Functest backend tests using an archive"""
+
+    def setUp(self):
+        super().setUp()
+        self.backend = Functest(FUNCTEST_URL, archive=self.archive)
+
+    @httpretty.activate
+    @unittest.mock.patch('perceval.backends.opnfv.functest.datetime_utcnow')
+    def test_fetch_from_archive(self, mock_utcnow):
+        """Test whether it fetches data from a repository from archive"""
+
+        mock_utcnow.return_value = datetime.datetime(2017, 6, 1, 11, 0, 0)
+
+        setup_http_server()
+        self._test_fetch_from_archive()
+
+    @httpretty.activate
+    def test_fetch_from_date_from_archive(self):
+        """Test whether it fetches data from a repository using dates for filtering from archive"""
+
+        from_date = datetime.datetime(2017, 6, 1, 10, 0, 0)
+        to_date = datetime.datetime(2017, 6, 1, 11, 0, 0)
+
+        setup_http_server()
+        self._test_fetch_from_archive(from_date=from_date, to_date=to_date)
+
+    @httpretty.activate
+    def test_fetch_empty_from_archive(self):
+        """Test whether it works when no data is returned from archive"""
+
+        setup_http_server()
+        from_date = datetime.datetime(2020, 1, 1)
+        self._test_fetch_from_archive(from_date=from_date)
 
 
 class TestFunctestClient(unittest.TestCase):

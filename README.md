@@ -1,4 +1,4 @@
-# perceval-opnfv [![Build Status](https://travis-ci.org/grimoirelab/perceval-opnfv.svg?branch=master)](https://travis-ci.org/grimoirelab/perceval-opnfv) [![Coverage Status](https://img.shields.io/coveralls/grimoirelab/perceval-opnfv.svg)](https://coveralls.io/r/grimoirelab/perceval-opnfv?branch=master)
+# perceval-opnfv [![Build Status](https://travis-ci.org/chaoss/grimoirelab-perceval-opnfv.svg?branch=master)](https://travis-ci.org/chaoss/grimoirelab-perceval-opnfv) [![Coverage Status](https://img.shields.io/coveralls/chaoss/grimoirelab-perceval-opnfv.svg)](https://coveralls.io/r/chaoss/grimoirelab-perceval-opnfv?branch=master)
 
 Bundle of Perceval backends for OPNFV ecosystem.
 

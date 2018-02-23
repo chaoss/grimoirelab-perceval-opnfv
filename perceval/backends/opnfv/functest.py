@@ -29,8 +29,7 @@ from grimoirelab.toolkit.uris import urijoin
 
 from ...backend import (Backend,
                         BackendCommand,
-                        BackendCommandArgumentParser,
-                        metadata)
+                        BackendCommandArgumentParser)
 from ...client import HttpClient
 from ...utils import DEFAULT_DATETIME
 
@@ -47,17 +46,17 @@ class Functest(Backend):
 
     :param url: Functest URL
     :param tag: label used to mark the data
+    :param archive: archive to store/retrieve items
     """
-    version = '0.2.0'
+    version = '0.3.0'
 
-    def __init__(self, url, tag=None):
+    def __init__(self, url, tag=None, archive=None):
         origin = url
 
-        super().__init__(origin, tag=tag, cache=None)
+        super().__init__(origin, tag=tag, archive=archive)
         self.url = url
-        self.client = FunctestClient(url)
+        self.client = None
 
-    @metadata
     def fetch(self, from_date=DEFAULT_DATETIME, to_date=None):
         """Fetch tests data from the server.
 
@@ -69,8 +68,19 @@ class Functest(Backend):
 
         :returns: a generator of items
         """
-        from_date = datetime_to_utc(from_date)
+        from_date = datetime_to_utc(from_date) if from_date else DEFAULT_DATETIME
         to_date = datetime_to_utc(to_date) if to_date else datetime_utcnow()
+
+        kwargs = {"from_date": from_date, "to_date": to_date}
+        items = super().fetch("functest", **kwargs)
+
+        return items
+
+    def fetch_items(self, **kwargs):
+        """Fetch tests data"""
+
+        from_date = kwargs['from_date']
+        to_date = kwargs['to_date']
 
         logger.info("Fetching tests data of '%s' group from %s to %s",
                     self.url, str(from_date),
@@ -90,12 +100,12 @@ class Functest(Backend):
         logger.info("Fetch process completed: %s tests data fetched", ndata)
 
     @classmethod
-    def has_caching(cls):
-        """Returns whether it supports caching items on the fetch process.
+    def has_archiving(cls):
+        """Returns whether it supports archiving items on the fetch process.
 
-        :returns: this backend does not support items cache
+        :returns: this backend supports items archive
         """
-        return False
+        return True
 
     @classmethod
     def has_resuming(cls):
@@ -151,6 +161,11 @@ class Functest(Backend):
         result = json.loads(raw_json)
         return result['results']
 
+    def _init_client(self, from_archive=False):
+        """Init client"""
+
+        return FunctestClient(self.url, self.archive, from_archive)
+
 
 class FunctestClient(HttpClient):
     """Functest REST API client.
@@ -159,6 +174,8 @@ class FunctestClient(HttpClient):
     from a Functest site using its REST API v1.
 
     :param base_url: URL of the Functest server
+    :param archive: an archive to store/read fetched data
+    :param from_archive: it tells whether to write/read the archive
     """
     FUNCTEST_API_PATH = "/api/v1/"
 
@@ -173,8 +190,9 @@ class FunctestClient(HttpClient):
     # Maximum retries per request
     MAX_RETRIES = 3
 
-    def __init__(self, base_url):
-        super().__init__(base_url, max_retries=FunctestClient.MAX_RETRIES)
+    def __init__(self, base_url, archive=None, from_archive=False):
+        super().__init__(base_url, max_retries=FunctestClient.MAX_RETRIES,
+                         archive=archive, from_archive=from_archive)
 
     def results(self, from_date, to_date=None):
         """Get test cases results."""
@@ -215,7 +233,8 @@ class FunctestCommand(BackendCommand):
         """Returns the Functest argument parser."""
 
         parser = BackendCommandArgumentParser(from_date=True,
-                                              to_date=True)
+                                              to_date=True,
+                                              archive=True)
 
         # Required arguments
         parser.parser.add_argument('url',

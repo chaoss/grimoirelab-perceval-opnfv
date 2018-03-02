@@ -33,6 +33,7 @@ from ...backend import (Backend,
 from ...client import HttpClient
 from ...utils import DEFAULT_DATETIME
 
+CATEGORY_FUNCTEST = "functest"
 
 logger = logging.getLogger(__name__)
 
@@ -48,7 +49,7 @@ class Functest(Backend):
     :param tag: label used to mark the data
     :param archive: archive to store/retrieve items
     """
-    version = '0.3.0'
+    version = '0.4.0'
 
     def __init__(self, url, tag=None, archive=None):
         origin = url
@@ -57,12 +58,13 @@ class Functest(Backend):
         self.url = url
         self.client = None
 
-    def fetch(self, from_date=DEFAULT_DATETIME, to_date=None):
+    def fetch(self, category=CATEGORY_FUNCTEST, from_date=DEFAULT_DATETIME, to_date=None):
         """Fetch tests data from the server.
 
         This method fetches tests data from a server that were
         updated since the given date.
 
+        :param category: the category of items to fetch
         :param from_date: obtain data updated since this date
         :param to_date: obtain data updated before this date
 
@@ -72,7 +74,7 @@ class Functest(Backend):
         to_date = datetime_to_utc(to_date) if to_date else datetime_utcnow()
 
         kwargs = {"from_date": from_date, "to_date": to_date}
-        items = super().fetch("functest", **kwargs)
+        items = super().fetch(category, **kwargs)
 
         return items
 
@@ -145,7 +147,7 @@ class Functest(Backend):
         This backend only generates one type of item which is
         'functest'.
         """
-        return 'functest'
+        return CATEGORY_FUNCTEST
 
     @staticmethod
     def parse_json(raw_json):

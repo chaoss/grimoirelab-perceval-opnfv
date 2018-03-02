@@ -49,7 +49,9 @@ class Functest(Backend):
     :param tag: label used to mark the data
     :param archive: archive to store/retrieve items
     """
-    version = '0.4.0'
+    version = '0.4.1'
+
+    CATEGORIES = [CATEGORY_FUNCTEST]
 
     def __init__(self, url, tag=None, archive=None):
         origin = url

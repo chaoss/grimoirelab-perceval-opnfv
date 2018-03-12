@@ -237,7 +237,8 @@ class TestFunctestBackendArchive(TestCaseBackendArchive):
 
     def setUp(self):
         super().setUp()
-        self.backend = Functest(FUNCTEST_URL, archive=self.archive)
+        self.backend_write_archive = Functest(FUNCTEST_URL, archive=self.archive)
+        self.backend_read_archive = Functest(FUNCTEST_URL, archive=self.archive)
 
     @httpretty.activate
     @unittest.mock.patch('perceval.backends.opnfv.functest.datetime_utcnow')

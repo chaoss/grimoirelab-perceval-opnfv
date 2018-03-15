@@ -32,7 +32,7 @@ from perceval.backends.opnfv.functest import (Functest,
                                               FunctestCommand)
 from perceval.utils import DEFAULT_DATETIME
 
-from tests.base import TestCaseBackendArchive
+from base import TestCaseBackendArchive
 
 
 def read_file(filename, mode='r'):

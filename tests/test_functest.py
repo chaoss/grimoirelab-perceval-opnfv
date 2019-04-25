@@ -328,6 +328,7 @@ class TestFunctestCommand(unittest.TestCase):
 
         parser = FunctestCommand.setup_cmd_parser()
         self.assertIsInstance(parser, BackendCommandArgumentParser)
+        self.assertEqual(parser._categories, Functest.CATEGORIES)
 
         args = ['--from-date', '1970-01-01',
                 '--to-date', '2010-01-01',

@@ -223,6 +223,20 @@ class TestFunctestBackend(unittest.TestCase):
         # Check requests
         self.assertEqual(len(httpretty.httpretty.latest_requests), 1)
 
+    @httpretty.activate
+    def test_search_fields(self):
+        """Test whether the search_fields is properly set"""
+
+        setup_http_server()
+
+        functest = Functest(FUNCTEST_URL)
+        items = [item for item in functest.fetch()]
+
+        item = items[0]
+        self.assertEqual(functest.metadata_id(item['data']), item['search_fields']['item_id'])
+        self.assertEqual(item['data']['project_name'], 'functest')
+        self.assertEqual(item['data']['project_name'], item['search_fields']['project_name'])
+
     def test_parse_json(self):
         """Test if it parses a JSON stream"""
 

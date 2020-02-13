@@ -17,6 +17,7 @@
 #
 # Authors:
 #     Santiago Dueñas <sduenas@bitergia.com>
+#     Quan Zhou <quan@bitergia.com>
 #
 
 import json
@@ -48,18 +49,19 @@ class Functest(Backend):
     :param url: Functest URL
     :param tag: label used to mark the data
     :param archive: archive to store/retrieve items
+    :param ssl_verify: enable/disable SSL verification
     """
-    version = '0.5.0'
+    version = '0.6.0'
 
     CATEGORIES = [CATEGORY_FUNCTEST]
     EXTRA_SEARCH_FIELDS = {
         'project_name': ['project_name']
     }
 
-    def __init__(self, url, tag=None, archive=None):
+    def __init__(self, url, tag=None, archive=None, ssl_verify=True):
         origin = url
 
-        super().__init__(origin, tag=tag, archive=archive)
+        super().__init__(origin, tag=tag, archive=archive, ssl_verify=ssl_verify)
         self.url = url
         self.client = None
 
@@ -176,7 +178,7 @@ class Functest(Backend):
     def _init_client(self, from_archive=False):
         """Init client"""
 
-        return FunctestClient(self.url, self.archive, from_archive)
+        return FunctestClient(self.url, self.archive, from_archive, self.ssl_verify)
 
 
 class FunctestClient(HttpClient):
@@ -188,6 +190,7 @@ class FunctestClient(HttpClient):
     :param base_url: URL of the Functest server
     :param archive: an archive to store/read fetched data
     :param from_archive: it tells whether to write/read the archive
+    :param ssl_verify: enable/disable SSL verification
     """
     FUNCTEST_API_PATH = "/api/v1/"
 
@@ -202,9 +205,10 @@ class FunctestClient(HttpClient):
     # Maximum retries per request
     MAX_RETRIES = 3
 
-    def __init__(self, base_url, archive=None, from_archive=False):
+    def __init__(self, base_url, archive=None, from_archive=False, ssl_verify=True):
         super().__init__(base_url, max_retries=FunctestClient.MAX_RETRIES,
-                         archive=archive, from_archive=from_archive)
+                         archive=archive, from_archive=from_archive,
+                         ssl_verify=ssl_verify)
 
     def results(self, from_date, to_date=None):
         """Get test cases results."""
@@ -247,7 +251,8 @@ class FunctestCommand(BackendCommand):
         parser = BackendCommandArgumentParser(cls.BACKEND,
                                               from_date=True,
                                               to_date=True,
-                                              archive=True)
+                                              archive=True,
+                                              ssl_verify=True)
 
         # Required arguments
         parser.parser.add_argument('url',

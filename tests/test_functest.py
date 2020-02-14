@@ -17,6 +17,7 @@
 #
 # Authors:
 #     Santiago Dueñas <sduenas@bitergia.com>
+#     Quan Zhou <quan@bitergia.com>
 #
 
 import datetime
@@ -87,12 +88,14 @@ class TestFunctestBackend(unittest.TestCase):
         self.assertEqual(functest.origin, FUNCTEST_URL)
         self.assertEqual(functest.tag, 'test')
         self.assertIsNone(functest.client)
+        self.assertTrue(functest.ssl_verify)
 
         # When tag is empty or None it will be set to
         # the value in
-        functest = Functest(FUNCTEST_URL)
+        functest = Functest(FUNCTEST_URL, ssl_verify=False)
         self.assertEqual(functest.origin, FUNCTEST_URL)
         self.assertEqual(functest.tag, FUNCTEST_URL)
+        self.assertFalse(functest.ssl_verify)
 
         functest = Functest(FUNCTEST_URL, tag='')
         self.assertEqual(functest.origin, FUNCTEST_URL)
@@ -291,6 +294,23 @@ class TestFunctestClient(unittest.TestCase):
     into account that the body returned on each request might not
     match with the parameters from the request.
     """
+    def test_init(self):
+        """Test initialization"""
+
+        functest = FunctestClient(FUNCTEST_URL)
+        self.assertEqual(functest.base_url, FUNCTEST_URL)
+        self.assertEqual(functest.max_retries, 3)
+        self.assertIsNone(functest.archive)
+        self.assertFalse(functest.from_archive)
+        self.assertTrue(functest.ssl_verify)
+
+        functest = FunctestClient(FUNCTEST_URL, ssl_verify=False)
+        self.assertEqual(functest.base_url, FUNCTEST_URL)
+        self.assertEqual(functest.max_retries, 3)
+        self.assertIsNone(functest.archive)
+        self.assertFalse(functest.from_archive)
+        self.assertFalse(functest.ssl_verify)
+
     @httpretty.activate
     def test_repository(self):
         """Test repository API call"""
@@ -354,6 +374,13 @@ class TestFunctestCommand(unittest.TestCase):
         self.assertEqual(parsed_args.to_date,
                          datetime.datetime(2010, 1, 1, 0, 0, 0,
                                            tzinfo=dateutil.tz.tzutc()))
+        self.assertTrue(parsed_args.ssl_verify)
+
+        args = ['http://example.com', '--no-archive', '--no-ssl-verify']
+        parsed_args = parser.parse(*args)
+        self.assertEqual(parsed_args.url, 'http://example.com')
+        self.assertTrue(parsed_args.no_archive)
+        self.assertFalse(parsed_args.ssl_verify)
 
 
 if __name__ == "__main__":

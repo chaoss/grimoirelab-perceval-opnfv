@@ -38,7 +38,7 @@ with codecs.open(readme_md, encoding='utf-8') as f:
     long_description = f.read()
 
 
-version = '0.1.18'
+version = '0.1.19'
 
 
 class TestCommand(TestClass):

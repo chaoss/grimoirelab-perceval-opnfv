@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "perceval-opnfv"
-version = "0.2.19-rc.1"
+version = "0.2.19"
 description = "Bundle of Perceval backends for OPNFV ecosystem."
 authors = [
     "GrimoireLab Developers"

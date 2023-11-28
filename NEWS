@@ -1,5 +1,9 @@
 # Releases
 
+  ## perceval-opnfv 0.2.19 - (2023-11-28)
+  
+  * Update Poetry's package dependencies
+
   ## perceval-opnfv 0.2.18 - (2023-11-14)
   
   * Update Poetry's package dependencies

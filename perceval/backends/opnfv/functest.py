@@ -51,7 +51,7 @@ class Functest(Backend):
     :param archive: archive to store/retrieve items
     :param ssl_verify: enable/disable SSL verification
     """
-    version = '0.6.0'
+    version = '1.0.0'
 
     CATEGORIES = [CATEGORY_FUNCTEST]
     EXTRA_SEARCH_FIELDS = {

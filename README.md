@@ -1,4 +1,4 @@
-# perceval-opnfv [![Build Status](https://github.com/chaoss/grimoirelab-perceval-opnfv/workflows/tests/badge.svg)](https://github.com/chaoss/grimoirelab-perceval-opnfv/actions?query=workflow:tests+branch:master+event:push) [![Coverage Status](https://img.shields.io/coveralls/chaoss/grimoirelab-perceval-opnfv.svg)](https://coveralls.io/r/chaoss/grimoirelab-perceval-opnfv?branch=master)  [![PyPI version](https://badge.fury.io/py/perceval-opnfv.svg)](https://badge.fury.io/py/perceval-opnfv)
+# perceval-opnfv [![Build Status](https://github.com/chaoss/grimoirelab-perceval-opnfv/workflows/tests/badge.svg)](https://github.com/chaoss/grimoirelab-perceval-opnfv/actions?query=workflow:tests+branch:main+event:push) [![Coverage Status](https://img.shields.io/coveralls/chaoss/grimoirelab-perceval-opnfv.svg)](https://coveralls.io/r/chaoss/grimoirelab-perceval-opnfv?branch=main)  [![PyPI version](https://badge.fury.io/py/perceval-opnfv.svg)](https://badge.fury.io/py/perceval-opnfv)
 
 Bundle of Perceval backends for OPNFV ecosystem.
 
